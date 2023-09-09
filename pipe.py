@@ -16,8 +16,8 @@ class Pipe:
         self.data = data
         self.embeds = embeds
 
-    def __call__(self, query, train_name, use_text2speech=True):
-        if use_text2speech:
+    def __call__(self, query, train_name, use_speech2text=True):
+        if use_speech2text:
             segments, info = self.speech2text.transcribe(query, beam_size=3)
             query = "".join([segment.text for segment in segments])
 
