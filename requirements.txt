@@ -1,0 +1,5 @@
+faster_whisper
+cherche[gpu]
+sentence_transformers
+transformers
+numpy==1.24
