@@ -16,9 +16,10 @@ class Pipe:
         self.data = data
         self.embeds = embeds
 
-    def __call__(self, audio, train_name):
-        segments, info = self.speech2text.transcribe(audio, beam_size=3)
-        query = "".join([segment.text for segment in segments])
+    def __call__(self, query, train_name, use_text2speech=True):
+        if use_text2speech:
+            segments, info = self.speech2text.transcribe(query, beam_size=3)
+            query = "".join([segment.text for segment in segments])
 
         self.ranker.load_index(self.embeds[train_name])
         top_k = self.ranker(query)
